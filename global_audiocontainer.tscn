@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sfx/380509__jimthecab__hang-drum-9.wav" type="AudioStream" id=1]
+[ext_resource path="res://sfx/106290__pder__mein-kick-1.wav" type="AudioStream" id=2]
+[ext_resource path="res://sfx/244195__cima__snare1.wav" type="AudioStream" id=3]
+[ext_resource path="res://sfx/73537__snipperbes__classiclaser.wav" type="AudioStream" id=4]
+
+[node name="container" type="Node"]
+
+[node name="player_bell" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
+bus = "Bell"
+
+[node name="player_kick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = 10.571
+bus = "Reverb"
+
+[node name="player_snare" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = 5.0
+bus = "Reverb"
+
+[node name="player_laser" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -6.0
+bus = "Reverb"
+

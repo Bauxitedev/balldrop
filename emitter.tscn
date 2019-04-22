@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://emitter.gd" type="Script" id=1]
+[ext_resource path="res://tex/glow2.png" type="Texture" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[node name="emitter" type="Node2D"]
+script = ExtResource( 1 )
+sound = "bell"
+
+[node name="timer" type="Timer" parent="."]
+autostart = true
+
+[node name="spr" type="Sprite" parent="."]
+modulate = Color( 0.183594, 0.183594, 0.183594, 1 )
+material = SubResource( 1 )
+texture = ExtResource( 2 )
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

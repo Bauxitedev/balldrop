@@ -1,0 +1,150 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://main.gd" type="Script" id=1]
+[ext_resource path="res://fonts/WireOne.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+glow_levels/1 = true
+glow_levels/2 = true
+glow_levels/4 = true
+glow_levels/6 = true
+glow_levels/7 = true
+glow_intensity = 0.4
+glow_blend_mode = 1
+glow_bicubic_upscale = true
+
+[sub_resource type="DynamicFont" id=2]
+size = 160
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 60
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "fade_in"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("vsplit/logo:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("vsplit/controls:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 3.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("vsplit:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 8.2, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform sampler2D gradient;
+
+float rand(vec2 co){
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
+
+void fragment()
+{
+	//Adding a little noise here to reduce the banding
+	COLOR = texture(gradient, vec2(UV.y + (rand(UV)-0.5) * 0.04, 0));
+}"
+
+[sub_resource type="Gradient" id=6]
+colors = PoolColorArray( 0.371094, 0.371094, 0.371094, 1, 0.117188, 0.117188, 0.117188, 1 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 5 )
+shader_param/gradient = SubResource( 7 )
+
+[node name="main" type="WorldEnvironment"]
+environment = SubResource( 1 )
+script = ExtResource( 1 )
+
+[node name="ball_container" type="Node" parent="." groups=[
+"ball_container",
+]]
+
+[node name="cam" type="Camera2D" parent="."]
+position = Vector2( 640, 360 )
+
+[node name="center" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="vsplit" type="VSplitContainer" parent="center"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 426.0
+margin_top = 168.0
+margin_right = 853.0
+margin_bottom = 552.0
+mouse_filter = 2
+dragger_visibility = 2
+
+[node name="logo" type="Label" parent="center/vsplit"]
+margin_right = 427.0
+margin_bottom = 177.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "balldrop."
+align = 1
+valign = 1
+
+[node name="controls" type="Label" parent="center/vsplit"]
+margin_top = 177.0
+margin_right = 427.0
+margin_bottom = 384.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "
+draw lines: left mouse button
+erase lines: right mouse button"
+align = 1
+valign = 1
+
+[node name="anim" type="AnimationPlayer" parent="center"]
+autoplay = "fade_in"
+anims/fade_in = SubResource( 4 )
+
+[node name="layer_bg" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="gradient" type="ColorRect" parent="layer_bg"]
+material = SubResource( 8 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.184314, 0.0901961, 0.0901961, 1 )
+

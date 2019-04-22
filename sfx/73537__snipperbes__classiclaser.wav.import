@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/73537__snipperbes__classiclaser.wav-8a04fca7ba6a386c810632aa2272b3e1.sample"
+
+[deps]
+
+source_file="res://sfx/73537__snipperbes__classiclaser.wav"
+dest_files=[ "res://.import/73537__snipperbes__classiclaser.wav-8a04fca7ba6a386c810632aa2272b3e1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

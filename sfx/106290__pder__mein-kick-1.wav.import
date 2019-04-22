@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/106290__pder__mein-kick-1.wav-678319b21193992aad14b655080ed64d.sample"
+
+[deps]
+
+source_file="res://sfx/106290__pder__mein-kick-1.wav"
+dest_files=[ "res://.import/106290__pder__mein-kick-1.wav-678319b21193992aad14b655080ed64d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,62 @@
+[gd_resource type="AudioBusLayout" load_steps=7 format=2]
+
+[sub_resource type="AudioEffectHighPassFilter" id=1]
+resource_name = "HighPassFilter"
+cutoff_hz = 20.0
+
+[sub_resource type="AudioEffectReverb" id=2]
+resource_name = "Reverb"
+room_size = 0.92
+damping = 1.0
+hipass = 0.01
+wet = 0.11
+
+[sub_resource type="AudioEffectChorus" id=3]
+resource_name = "Chorus"
+wet = 0.7
+voice/1/delay_ms = 5.0
+voice/1/rate_hz = 0.5
+voice/2/delay_ms = 10.0
+voice/2/rate_hz = 0.4
+voice/2/cutoff_hz = 7328.0
+
+[sub_resource type="AudioEffectCompressor" id=4]
+resource_name = "Compressor"
+ratio = 43.6
+attack_us = 80.0
+release_ms = 400.0
+
+[sub_resource type="AudioEffectHighPassFilter" id=5]
+resource_name = "HighPassFilter"
+cutoff_hz = 20.0
+
+[sub_resource type="AudioEffectLowShelfFilter" id=6]
+resource_name = "LowShelfFilter"
+
+[resource]
+bus/0/volume_db = -8.5
+bus/1/name = "Reverb"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = "Master"
+bus/1/effect/0/effect = SubResource( 1 )
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource( 2 )
+bus/1/effect/1/enabled = true
+bus/2/name = "Bell"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = "Reverb"
+bus/2/effect/0/effect = SubResource( 3 )
+bus/2/effect/0/enabled = true
+bus/2/effect/1/effect = SubResource( 4 )
+bus/2/effect/1/enabled = true
+bus/2/effect/2/effect = SubResource( 5 )
+bus/2/effect/2/enabled = true
+bus/2/effect/3/effect = SubResource( 6 )
+bus/2/effect/3/enabled = true
+
