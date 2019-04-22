@@ -9,7 +9,7 @@ The idea is that there are multiple emitters on the screen that periodically spa
 
 You can draw lines by holding the left mouse button and erase them again by pressing the right mouse button.
 
-
+You can get the executables [here](https://bauxite.itch.io/balldrop).
 
 [Here's a video of it in action.](https://www.youtube.com/watch?v=yhKnGPcZmE4)
 
